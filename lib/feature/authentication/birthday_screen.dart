@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:tiktok_clone_second/constants/gaps.dart';
 import 'package:tiktok_clone_second/constants/sizes.dart';
-import 'package:tiktok_clone_second/feature/authentication/email_screen.dart';
 import 'package:tiktok_clone_second/feature/authentication/widgets/form_button.dart';
+import 'package:tiktok_clone_second/feature/onboarding/interests_screen.dart';
 
 class BirthdayScreen extends StatefulWidget {
   const BirthdayScreen({super.key});
@@ -16,31 +16,36 @@ class BirthdayScreen extends StatefulWidget {
 class _BirthdayScreenState extends State<BirthdayScreen> {
   final TextEditingController _birthdayController = TextEditingController();
 
-  DateTime date = DateTime.now();
-
   @override
   void dispose() {
     _birthdayController.dispose();
     super.dispose();
   }
 
+  DateTime initialDate = DateTime.now();
+
   @override
   void initState() {
     super.initState();
-    final textDate = date.toString().split(" ").first;
-    _birthdayController.value = TextEditingValue(text: textDate);
+    _setTextFieldDate(initialDate);
   }
 
   void _onNextTap() {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => const EmailScreen()),
+      MaterialPageRoute(builder: (context) => const InterestsScreen()),
     );
+  }
+
+  void _setTextFieldDate(DateTime date) {
+    final textdate = date.toString().split(" ").first;
+    _birthdayController.value = TextEditingValue(text: textdate);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text(
           "Sign up",
         ),
@@ -54,7 +59,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
           children: [
             Gaps.v40,
             const Text(
-              "When's your Brithday?",
+              "When's your birthday?",
               style: TextStyle(
                 fontSize: Sizes.size20 + Sizes.size2,
                 fontWeight: FontWeight.w700,
@@ -89,16 +94,20 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             Gaps.v16,
             GestureDetector(
               onTap: () => _onNextTap(),
-              child: const FormButton(
-                disabled: false,
-              ),
+              child: const FormButton(disabled: false),
             )
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: CupertinoDatePicker(
-          onDateTimeChanged: (DateTime value) {},
+      bottomNavigationBar: SizedBox(
+        height: 300,
+        child: BottomAppBar(
+          child: CupertinoDatePicker(
+            maximumDate: initialDate,
+            initialDateTime: initialDate,
+            mode: CupertinoDatePickerMode.date,
+            onDateTimeChanged: _setTextFieldDate,
+          ),
         ),
       ),
     );
