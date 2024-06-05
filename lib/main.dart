@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone_second/feature/authentication/sign_up_screen.dart';
+import 'package:tiktok_clone_second/feature/main_navigation/main_navigation_screen.dart';
 import 'package:tiktok_clone_second/feature/onboarding/interests_screen.dart';
 import "constants/sizes.dart";
 
@@ -30,7 +31,17 @@ class TikTokApp extends StatelessWidget {
         primaryColor: const Color(0xFFE9435A),
         useMaterial3: true,
       ),
-      home: const SignUpScreen(),
+      home: MainNavigation(),
     );
   }
 }
+
+//깃허브 저장 명령어
+
+//git add .
+
+//git commit -m "오류 수정: [오류 설명 또는 해결 방법]"
+
+//git push origin main
+
+
