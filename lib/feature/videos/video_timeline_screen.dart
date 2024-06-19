@@ -33,10 +33,6 @@ class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
 
   void _onVideoFinished() {
     return;
-    _pageController.nextPage(
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.linear,
-    );
   }
 
   @override

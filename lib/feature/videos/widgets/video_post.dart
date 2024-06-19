@@ -131,7 +131,7 @@ class _VideoPostState extends State<VideoPost>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "@니코",
+                  "@인혁이",
                   style: TextStyle(
                     fontSize: Sizes.size20,
                     color: Colors.white,
@@ -140,7 +140,7 @@ class _VideoPostState extends State<VideoPost>
                 ),
                 Gaps.v10,
                 Text(
-                  "This is my house in Thailand!",
+                  "오리 맛있겠군 할머니",
                   style: TextStyle(
                     fontSize: Sizes.size16,
                     color: Colors.white,
@@ -160,7 +160,7 @@ class _VideoPostState extends State<VideoPost>
                     foregroundColor: Colors.white,
                     foregroundImage: NetworkImage(
                         "https://avatars.githubusercontent.com/u/168902684?v=4"),
-                    child: Text("니코"),
+                    child: Text("인혁"),
                   ),
                   Gaps.v24,
                   VideoButton(
