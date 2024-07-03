@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone_second/constants/gaps.dart';
 import 'package:tiktok_clone_second/constants/sizes.dart';
@@ -15,8 +13,10 @@ class VideoPost extends StatefulWidget {
     required this.onVideoFinished,
     required this.index,
   });
+
   final Function onVideoFinished;
   final int index;
+
   @override
   State<VideoPost> createState() => _VideoPostState();
 }
@@ -29,6 +29,7 @@ class _VideoPostState extends State<VideoPost>
   bool _isPaused = false;
   final Duration _animationDuration = const Duration(milliseconds: 200);
   late final AnimationController _animationController;
+
   void _onVideoChange() {
     if (_videoPlayerController.value.isInitialized) {
       if (_videoPlayerController.value.duration ==
@@ -47,7 +48,6 @@ class _VideoPostState extends State<VideoPost>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _initVideoPlayer();
 
@@ -65,15 +65,20 @@ class _VideoPostState extends State<VideoPost>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _videoPlayerController.removeListener(_onVideoChange);
     _videoPlayerController.dispose();
     super.dispose();
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
-    if (info.visibleFraction == 1 && !_videoPlayerController.value.isPlaying) {
+    // 비디오가 보이는 상태에서만 자동 재생하도록 수정
+    if (info.visibleFraction == 1 &&
+        !_videoPlayerController.value.isPlaying &&
+        !_isPaused) {
       _videoPlayerController.play();
+    }
+    if (_videoPlayerController.value.isPlaying && info.visibleFraction == 0) {
+      _onTogglePause();
     }
   }
 
