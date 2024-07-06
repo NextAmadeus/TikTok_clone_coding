@@ -127,7 +127,6 @@ class _InterestsScreenState extends State<InterestsScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _scrollController.addListener(_onScroll);
   }

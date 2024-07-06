@@ -36,7 +36,6 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
         builder: (context) => const InterestsScreen(),
       ),
       (route) {
-        print(route);
         return false;
       },
     );

@@ -116,7 +116,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                           _passwordController.clear(); // 텍스트 필드를 지움
                         },
                         child: FaIcon(
-                          FontAwesomeIcons.solidXmarkCircle,
+                          FontAwesomeIcons.solidCircleXmark,
                           color: Colors.grey.shade500,
                           size: Sizes.size20,
                         ),
